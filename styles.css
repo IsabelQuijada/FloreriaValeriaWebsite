@@ -142,6 +142,9 @@ section {
 .contact-info a {
   color: var(--text-dark);
   transition: color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .contact-info a:hover {
@@ -1009,7 +1012,7 @@ section {
   color: white;
 }
 
-/* FOOTER STYLES */
+/* FOOTER STYLES - Optimizado UI/UX */
 .footer {
   background-color: var(--text-dark);
   color: white;
@@ -1017,38 +1020,41 @@ section {
 
 .footer-cta {
   background: linear-gradient(135deg, var(--accent-pink) 0%, var(--dark-pink) 100%);
-  padding: 80px 0;
+  padding: 32px 0; /* Más compacto */
   text-align: center;
 }
 
 .cta-content {
-  max-width: 800px;
+  max-width: 700px; /* Reducido de 800px */
   margin: 0 auto;
 }
 
 .cta-title {
-  font-size: 2.5rem;
+  font-size: 1.3rem;
   font-weight: 300;
-  letter-spacing: 4px;
-  margin-bottom: 20px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
   color: white;
 }
 
 .cta-description {
-  font-size: 1.2rem;
-  margin-bottom: 30px;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
   color: white;
   opacity: 0.95;
 }
 
 .footer-main {
-  padding: 60px 0;
+  padding: 18px 0; /* Más compacto */
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
+  grid-template-columns: 2fr 1.5fr 2fr 1.5fr;
+  gap: 14px; /* Más compacto */
+  max-width: 1000px; /* Más compacto */
+  margin: 0 auto;
+  align-items: start;
 }
 
 .footer-column {
@@ -1056,11 +1062,12 @@ section {
 }
 
 .footer-heading {
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  margin-bottom: 10px;
   color: var(--primary-pink);
+  text-transform: uppercase;
 }
 
 .footer-links {
@@ -1068,180 +1075,203 @@ section {
 }
 
 .footer-links li {
-  margin-bottom: 12px;
+  margin-bottom: 4px;
 }
 
 .footer-links a {
-  color: rgba(255, 255, 255, 0.8);
-  transition: color 0.3s;
-  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 0.3s, transform 0.2s;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .footer-links a:hover {
   color: var(--primary-pink);
+  transform: translateX(3px); /* Efecto sutil de movimiento */
 }
 
-.newsletter-text {
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 15px;
-  font-size: 0.95rem;
-}
-
-.newsletter-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.newsletter-input {
-  padding: 12px 15px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 0.95rem;
-}
-
-.newsletter-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.newsletter-input:focus {
-  outline: none;
-  border-color: var(--primary-pink);
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
-.newsletter-btn {
-  padding: 12px 25px;
-  background-color: var(--accent-pink);
-  color: white;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
-  transition: all 0.3s;
-}
-
-.newsletter-btn:hover {
-  background-color: var(--dark-pink);
-}
-
+/* Estilos específicos para redes sociales */
 .social-links {
   display: flex;
-  gap: 15px;
+  gap: 12px; /* Reducido de 15px */
+  margin-top: 8px;
 }
 
 .social-link {
-  font-size: 1.5rem;
-  transition: transform 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .social-link:hover {
+  background: var(--primary-pink);
   transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(245, 217, 224, 0.3);
 }
 
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 25px 0;
+.social-link img {
+  filter: brightness(0) invert(1); /* Hace los iconos blancos */
+  transition: filter 0.3s;
 }
 
-.footer-bottom-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+.social-link:hover img {
+  filter: brightness(0); /* Los iconos se vuelven negros al hover */
 }
 
-.copyright {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
+/* Responsive para footer - Tablet */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1.8fr 1.2fr 1.8fr 1.2fr; /* Ajuste para tablet */
+    gap: 20px;
+    max-width: 100%;
+  }
+  
+  .footer-heading {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+  }
+  
+  .footer-links a {
+    font-size: 0.85rem;
+  }
+  
+  .social-link {
+    width: 36px;
+    height: 36px;
+  }
 }
 
-.contact-buttons {
-  display: flex;
-  gap: 15px;
-}
-
-.contact-btn {
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  transition: all 0.3s;
-}
-
-.whatsapp-btn {
-  background-color: #25D366;
-  color: white;
-}
-
-.whatsapp-btn:hover {
-  background-color: #1fb855;
-  transform: translateY(-2px);
-}
-
-.phone-btn {
-  background-color: var(--accent-pink);
-  color: white;
-}
-
-.phone-btn:hover {
-  background-color: var(--dark-pink);
-  transform: translateY(-2px);
-}
-
-/* MOBILE STYLES */
+/* Responsive para footer - Mobile */
 @media (max-width: 768px) {
-  .container {
-    padding: 0 15px;
+  .footer-main {
+    padding: 10px 0 0 0 !important;
   }
-
-  .btn {
-    touch-action: manipulation;
+  .footer-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    max-width: 100%;
   }
-
-  /* NUEVO: Botón flotante de WhatsApp para mobile */
-  .whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    width: 60px;
-    height: 60px;
-    background: #25D366;
-    border-radius: 50%;
-    display: flex; /* VISIBLE en mobile */
-    align-items: center;
+  .footer-column {
+    display: none !important;
+  }
+  .footer-column:last-child {
+    display: block !important;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .footer-column:last-child .footer-heading {
+    display: none;
+  }
+  .footer-column:last-child .social-links {
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-    transition: all 0.3s ease;
-    text-decoration: none;
-    animation: pulse 2s infinite;
+    margin: 0 0 10px 0;
+    gap: 16px;
   }
-
-  .whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+  .footer-column:last-child .social-link {
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,0.10);
+    box-shadow: none;
   }
-
-  .whatsapp-float::before {
-    content: "💬";
-    font-size: 24px;
-    color: white;
+  .footer-bottom {
+    padding: 8px 0 4px 0 !important;
   }
-
-  @keyframes pulse {
-    0% {
-      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-    }
-    70% {
-      box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
-    }
-    100% {
-      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
   }
+  .copyright {
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+  /* WhatsApp botón destacado */
+  .contact-buttons {
+    display: flex !important;
+    justify-content: center;
+    margin: 0 0 16px 0;
+    gap: 0;
+  }
+  .contact-btn.whatsapp-btn {
+    width: 90vw;
+    max-width: 340px;
+    justify-content: center;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    margin: 0 auto 10px auto;
+    box-shadow: none;
+  }
+  .whatsapp-btn img {
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+  }
+  /* Oculta todo menos redes y WhatsApp */
+  .footer .footer-column:not(:last-child),
+  .footer .footer-column:last-child .footer-links {
+    display: none !important;
+  }
+  /* Si hay un div.contact-buttons dentro del grid, muéstralo arriba de redes */
+  .footer-main .contact-buttons {
+    display: flex !important;
+    margin-bottom: 10px;
+  }
+}
 
-  /* Header Mobile - Simplificado siguiendo mejores prácticas */
+/* WhatsApp Float - Mobile */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex; /* VISIBLE en mobile */
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  animation: pulse 2s infinite;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-float::before {
+  content: "💬";
+  font-size: 24px;
+  color: white;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+/* HEADER MOBILE - Simplificado siguiendo mejores prácticas */
+@media (max-width: 768px) {
   .header-top {
     display: none; /* OCULTO: Demasiados elementos para mobile */
   }
@@ -1334,8 +1364,10 @@ section {
   .scroll-line {
     height: 30px;
   }
+}
 
-  /* Products Mobile - Solo mostrar productos destacados */
+/* Products Mobile - Solo mostrar productos destacados */
+@media (max-width: 768px) {
   .products-section {
     padding: 40px 0; /* Menos padding */
   }
@@ -1411,8 +1443,10 @@ section {
     padding: 14px 28px;
     font-weight: 600;
   }
+}
 
-  /* Categories Mobile - Simplificado */
+/* Categories Mobile - Simplificado */
+@media (max-width: 768px) {
   .categories-section {
     padding: 40px 0; /* Más compacto */
   }
@@ -1449,85 +1483,82 @@ section {
     transform: translateY(0); /* Sin animaciones complejas */
     border-radius: 20px;
   }
+}
 
-  /* Footer Mobile - Simplificado */
-  .footer-cta {
-    display: none; /* OCULTO: Evita redundancia en mobile */
-  }
-
+/* Footer Mobile - Elegante y minimalista */
+@media (max-width: 768px) {
   .footer-main {
-    padding: 30px 0; /* Más compacto */
+    padding: 10px 0 0 0 !important;
   }
-
   .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 25px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    max-width: 100%;
   }
-
-  /* MOBILE: Solo mostrar columnas esenciales */
-  .footer-column:nth-child(2),
-  .footer-column:nth-child(3) {
-    display: none; /* OCULTO: Solo info esencial y newsletter */
+  .footer-column {
+    display: none !important;
   }
-
-  .footer-heading {
-    font-size: 0.9rem;
-    margin-bottom: 12px;
+  .footer-column:last-child {
+    display: block !important;
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
-
-  .footer-links li {
-    margin-bottom: 8px;
+  .footer-column:last-child .footer-heading {
+    display: none;
   }
-
-  .footer-links a {
-    font-size: 0.85rem;
-  }
-
-  .newsletter-text {
-    font-size: 0.85rem;
-    margin-bottom: 12px;
-  }
-
-  .newsletter-form {
-    margin-bottom: 15px;
-  }
-
-  .newsletter-input,
-  .newsletter-btn {
-    font-size: 0.85rem;
-    padding: 10px 12px;
-  }
-
-  .social-links {
+  .footer-column:last-child .social-links {
     justify-content: center;
+    margin: 0 0 10px 0;
+    gap: 16px;
   }
-
+  .footer-column:last-child .social-link {
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,0.10);
+    box-shadow: none;
+  }
   .footer-bottom {
-    padding: 15px 0; /* Más compacto */
+    padding: 8px 0 4px 0 !important;
   }
-
   .footer-bottom-content {
     flex-direction: column;
     text-align: center;
-    gap: 12px;
+    gap: 4px;
   }
-
   .copyright {
-    font-size: 0.8rem;
+    display: none !important;
   }
-
+  /* WhatsApp botón destacado */
   .contact-buttons {
-    width: 100%;
+    display: flex !important;
     justify-content: center;
-    gap: 10px;
+    margin: 0 0 16px 0;
+    gap: 0;
   }
-
-  .contact-btn {
-    flex: 1;
-    max-width: 140px;
-    padding: 10px 16px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border-radius: 20px;
+  .contact-btn.whatsapp-btn {
+    width: 90vw;
+    max-width: 340px;
+    justify-content: center;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    margin: 0 auto 10px auto;
+    box-shadow: none;
+  }
+  .whatsapp-btn img {
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+  }
+  /* Oculta todo menos redes y WhatsApp */
+  .footer .footer-column:not(:last-child),
+  .footer .footer-column:last-child .footer-links {
+    display: none !important;
+  }
+  /* Si hay un div.contact-buttons dentro del grid, muéstralo arriba de redes */
+  .footer-main .contact-buttons {
+    display: flex !important;
+    margin-bottom: 10px;
   }
 }
