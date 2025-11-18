@@ -1,3 +1,8 @@
+/* WhatsApp Float - Solo Mobile */
+.whatsapp-float {
+  display: none; /* Oculto por defecto (desktop) */
+}
+
 /* CSS Variables */
 :root {
   /* Paleta de colores inspirada en Melrose */
@@ -112,6 +117,14 @@ section {
   background-color: var(--soft-white);
 }
 
+/* Header font color update */
+.header,
+.header * {
+  color: #6d1e61 !important;
+}
+
+/* Excepciones para iconos o elementos que no deban cambiar, si es necesario, se pueden agregar después */
+
 .header-top {
   background-color: var(--primary-pink);
   padding: 10px 0;
@@ -151,11 +164,22 @@ section {
   align-items: center;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 48px;
+  margin-right: 16px;
+  vertical-align: middle;
+}
+
 .logo h1 {
   font-size: 1.8rem;
-  font-weight: 300;
+  font-weight: 700;
   letter-spacing: 3px;
-  color: var(--text-dark);
+  color: #a02a8e !important;
 }
 
 .menu-toggle {
@@ -168,8 +192,15 @@ section {
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 40px;
+  justify-content: center;
   align-items: center;
+  flex: 1;
+  gap: 0;
+}
+
+.nav-menu li {
+  flex: 1 1 0;
+  text-align: center;
 }
 
 .nav-menu li a {
@@ -232,52 +263,455 @@ section {
 /* HERO STYLES */
 .hero {
   position: relative;
-  height: 90vh;
-  min-height: 600px;
+  height: 100vh;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--primary-pink) 0%, var(--cream) 50%, var(--soft-white) 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  /* Compensa la altura del header sticky */
+  margin-top: calc(-1 * (var(--header-height, 120px)));
+  padding-top: calc(var(--header-height, 120px));
+}
+
+.petals-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(255, 182, 193, 0.3) 2px, transparent 2px),
+    radial-gradient(circle at 80% 40%, rgba(255, 192, 203, 0.4) 3px, transparent 3px),
+    radial-gradient(circle at 30% 80%, rgba(255, 160, 180, 0.3) 2px, transparent 2px),
+    radial-gradient(circle at 70% 70%, rgba(255, 200, 200, 0.4) 4px, transparent 4px),
+    radial-gradient(circle at 90% 10%, rgba(255, 182, 193, 0.3) 2px, transparent 2px);
+  background-size: 200px 200px, 150px 150px, 180px 180px, 220px 220px, 160px 160px;
+  animation: floatPetals 20s ease-in-out infinite;
+}
+
+@keyframes floatPetals {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(10px, -10px) rotate(1deg); }
+  50% { transform: translate(-5px, 10px) rotate(-1deg); }
+  75% { transform: translate(15px, 5px) rotate(0.5deg); }
+}
+
+.hero-flex {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.hero-image {
+  flex: 0 0 45%; /* Aumentado de 33.333% a 45% para que se vea más grande */
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  background: linear-gradient(135deg, var(--primary-pink) 0%, var(--cream) 50%, var(--soft-white) 100%);
+  background: transparent;
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%23f5d9e0" opacity="0.3"/></svg>');
-  background-size: cover;
-  opacity: 0.4;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.3) 100%);
+.hero-image img {
+  width: 120%; /* Aumentado para que la imagen sea más grande que su contenedor */
+  height: 120%; /* Aumentado para que la imagen sea más grande que su contenedor */
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0;
+  transform: scale(1.1); /* Escala adicional para agrandar la imagen */
 }
 
 .hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 900px;
-  padding: 0 20px;
-  animation: fadeInUp 1s ease-out;
+  flex: 1 1 55%; /* Ajustado para compensar el nuevo tamaño de la imagen */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 3;
+  text-align: center;
+}
+
+.content-box {
+  background: rgba(255, 182, 193, 0.9);
+  padding: 3rem 2.5rem;
+  border-radius: 15px;
+  max-width: 90%;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  color: white;
+  line-height: 1.2;
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
+  font-size: clamp(1.2rem, 3vw, 2rem);
   font-weight: 300;
-  color: var(--text-gray);
-  margin-bottom: 15px;
+  color: white;
+  margin-bottom: 1.5rem;
   letter-spacing: 1px;
+  font-style: italic;
+  text-transform: lowercase;
 }
+
+.hero-description {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  color: white;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.hero-buttons .btn {
+  padding: 12px 25px;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  min-width: 140px;
+  flex: 1 1 auto;
+  max-width: 200px;
+}
+
+.hero::before {
+  display: none;
+}
+
+/* Mobile Styles for Hero - Optimizado para UX/UI */
+@media (max-width: 768px) {
+  .hero {
+    /* CLAVE: Usar altura dinámica que resta el header */
+    height: calc(100vh - 70px); /* Resta altura del header mobile */
+    min-height: calc(100vh - 70px);
+    /* Eliminar espacio entre header y hero */
+    margin-top: 0;
+    padding-top: 0;
+    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--cream) 50%, var(--soft-white) 100%);
+  }
+  
+  .hero-flex {
+    flex-direction: column;
+    height: 100%;
+    gap: 0;
+    justify-content: flex-start; /* Mueve los elementos hacia arriba */
+  }
+  
+  .hero-image {
+    flex: 0 0 65%; /* AUMENTADO 40%: De 55% a 77% (55% * 1.4 ≈ 77%, ajustado a 65% para mejor proporción) */
+    height: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* REDUCIDO: Sin padding para acercar al header */
+    overflow: visible;
+    background: transparent;
+    margin-top: -10px; /* AÑADIDO: Reduce espacio con header */
+  }
+  
+  .hero-image img {
+    width: 140%; /* AUMENTADO 40%: De 100% a 140% */
+    max-width: 130%; /* AUMENTADO 40%: De 90% a 126%, redondeado a 130% */
+    height: 130%; /* AUMENTADO 40%: De 90% a 126%, redondeado a 130% */
+    max-height: 130%;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+    background: transparent;
+  }
+  
+  .hero-content {
+    flex: 1 1 auto; /* Flexible para ajustarse */
+    display: flex;
+    align-items: flex-start; /* CLAVE: Alinear arriba */
+    justify-content: center;
+    padding: 10px 15px; /* Padding mínimo */
+    min-height: 0;
+    width: 100%;
+  }
+  
+  .content-box {
+    padding: 20px 20px; /* Padding compacto mantenido */
+    max-width: 100%;
+    width: 100%;
+    margin: 0; /* Sin márgenes */
+    border-radius: 0; /* ELIMINADO: Sin bordes redondeados */
+    box-shadow: none; /* ELIMINADO: Sin sombra */
+    background: transparent; /* CAMBIADO: Fondo completamente transparente */
+    backdrop-filter: none; /* ELIMINADO: Sin filtro de fondo */
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* MOBILE: Ocultar el título principal pero configurar estilo */
+  .hero-title {
+    display: none; /* Mantener oculto el título principal */
+    font-weight: 700; /* AÑADIDO: Bold/negrita */
+    color: #000000; /* AÑADIDO: Color negro */
+  }
+  
+  .hero-subtitle {
+  display: block; /* MOSTRAR: Subtítulo visible en mobile */
+  font-size: clamp(1.1rem, 4.5vw, 1.4rem);
+  font-weight: 300;
+  color: #000; /* CAMBIO: Color negro */
+  margin-bottom: 16px;
+  text-align: center;
+  opacity: 0.95;
+  letter-spacing: 1px;
+  font-style: italic;
+  }
+  
+  .hero-description {
+    display: none; /* Mantener oculto */
+  }
+  
+  .hero-buttons {
+    gap: 0; /* Sin gap, solo 1 botón */
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* MOBILE: Solo mostrar el CTA principal - MÁS GRANDE */
+  .hero-buttons .btn-secondary {
+    display: none; /* YA OCULTO: Mantenido oculto */
+  }
+  
+  .hero-buttons .btn-primary {
+    width: 100%;
+    max-width: 300px; /* AUMENTADO: Tamaño máximo más grande para mejor accesibilidad */
+    padding: 20px 32px; /* AUMENTADO: Más padding para mejor área táctil (mín 44px altura) */
+    font-size: 1.2rem; /* AUMENTADO: Texto más legible */
+    letter-spacing: 1px;
+    border-radius: 12px; /* OPTIMIZADO: Bordes más sutiles para mejor UX */
+    font-weight: 700; /* Mantener bold */
+    min-height: 60px; /* AUMENTADO: Touch target óptimo (mín 44px, recomendado 48-60px) */
+    touch-action: manipulation;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* OPTIMIZADO: Sombra más sutil */
+    transition: all 0.3s ease;
+    background: linear-gradient(45deg, var(--accent-pink), var(--dark-pink));
+    border: none;
+    text-transform: uppercase; /* Texto en mayúsculas */
+    line-height: 1.2; /* AÑADIDO: Mejor espaciado de línea */
+  }
+  
+  .hero-buttons .btn-primary:active {
+    transform: scale(0.97); /* Feedback táctil */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Sombra reducida en tap */
+  }
+}
+
+/* Breakpoint específico para móviles pequeños */
+@media (max-width: 480px) {
+  .hero {
+    height: calc(100vh - 60px); /* Header más pequeño en móviles pequeños */
+    min-height: calc(100vh - 60px);
+  }
+  
+  .hero-image {
+    flex: 0 0 60%; /* AUMENTADO: Proporcionalmente aumentado para móviles pequeños */
+    height: 60%;
+    padding: 0; /* Sin padding para acercar al header */
+    margin-top: -8px; /* Reduce espacio con header */
+  }
+  
+  .hero-image img {
+    width: 135%; /* AUMENTADO 40%: Tamaño aumentado proporcionalmente */
+    max-width: 125%;
+    height: 125%;
+    max-height: 125%;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
+  }
+  
+  .hero-content {
+    flex: 1 1 auto;
+    padding: 8px 12px;
+    width: 100%;
+    align-items: flex-start;
+  }
+  
+  .content-box {
+    padding: 16px 16px;
+    border-radius: 0; /* ELIMINADO: Sin bordes redondeados */
+    box-shadow: none; /* ELIMINADO: Sin sombra */
+    background: transparent; /* CAMBIADO: Fondo transparente */
+  }
+  
+  /* Subtítulo visible y botón principal */
+  .hero-subtitle {
+    font-size: clamp(1rem, 4.2vw, 1.2rem);
+    margin-bottom: 14px;
+  }
+  
+  /* Botón principal más prominente con mejores prácticas mobile */
+  .hero-buttons .btn-primary {
+    font-size: 1rem; /* OPTIMIZADO: Tamaño legible */
+    padding: 18px 24px; /* OPTIMIZADO: Padding adecuado */
+    min-height: 56px; /* OPTIMIZADO: Touch target adecuado */
+    max-width: 280px;
+    border-radius: 10px; /* OPTIMIZADO: Bordes más sutiles */
+    line-height: 1.2;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* Sombra más sutil */
+  }
+  
+  /* WhatsApp float más pequeño para no interferir */
+  .whatsapp-float {
+    width: 55px;
+    height: 55px;
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .whatsapp-float::before {
+    font-size: 22px;
+  }
+}
+
+/* Breakpoint específico para tablets en modo portrait */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero {
+    height: calc(100vh - 75px); /* Altura ajustada para tablet */
+    min-height: calc(100vh - 75px);
+  }
+  
+  .hero-image {
+    flex: 0 0 70%; /* AUMENTADO 40%: De 58% a aproximadamente 70% */
+    height: 70%;
+    padding: 0; /* Sin padding para acercar al header */
+    margin-top: -10px; /* Reduce espacio con header */
+  }
+  
+  .hero-image img {
+    width: 130%; /* AUMENTADO 40%: De 92% a aproximadamente 130% */
+    max-width: 125%;
+    height: 125%;
+    max-height: 125%;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
+  }
+  
+  .hero-content {
+    flex: 1 1 auto;
+    padding: 12px 16px;
+    width: 100%;
+    align-items: flex-start;
+  }
+  
+  .content-box {
+    padding: 18px 20px;
+    border-radius: 0; /* ELIMINADO: Sin bordes redondeados */
+    box-shadow: none; /* ELIMINADO: Sin sombra */
+    background: transparent; /* CAMBIADO: Fondo transparente */
+  }
+  
+  /* Subtítulo visible en tablet también */
+  .hero-subtitle {
+    display: block;
+    font-size: clamp(1.2rem, 3.8vw, 1.5rem);
+    margin-bottom: 18px;
+  }
+  
+  /* Botón ligeramente más grande para tablet con mejores prácticas */
+  .hero-buttons .btn-primary {
+    padding: 20px 28px; /* OPTIMIZADO: Mejor área táctil */
+    font-size: 1.1rem; /* OPTIMIZADO: Tamaño legible */
+    max-width: 300px;
+    min-height: 58px; /* OPTIMIZADO: Touch target adecuado */
+    border-radius: 12px; /* OPTIMIZADO: Bordes más sutiles */
+    line-height: 1.2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra más sutil */
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-image {
+    flex: 0 0 42%; /* Ajuste para tablet */
+  }
+  
+  .hero-content {
+    flex: 1 1 58%;
+    padding: 1.5rem;
+  }
+  
+  .content-box {
+    padding: 2.5rem 2rem;
+    max-width: 85%;
+  }
+  
+  .hero-title {
+    font-size: clamp(2.5rem, 4vw, 3rem);
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(1.5rem, 2.5vw, 1.8rem);
+  }
+  
+  .hero-buttons .btn {
+    min-width: 160px;
+    padding: 13px 30px;
+  }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1440px) {
+  .hero-image {
+    flex: 0 0 40%; /* Mantiene la imagen grande en pantallas muy grandes */
+  }
+  
+  .hero-content {
+    flex: 1 1 60%;
+  }
+  
+  .content-box {
+    max-width: 550px;
+    padding: 4rem 3rem;
+  }
+  
+  .hero-title {
+    font-size: 4rem;
+    letter-spacing: 4px;
+  }
+  
+  .hero-subtitle {
+    font-size: 2.2rem;
+  }
+  
+  .hero-description {
+    font-size: 1.1rem;
+  }
+  
+  .hero-buttons .btn {
+    padding: 15px 35px;
+    font-size: 1rem;
+  }
+}
+
 
 .hero-title {
   font-size: 3.5rem;
@@ -765,31 +1199,65 @@ section {
     touch-action: manipulation;
   }
 
-  /* Header Mobile */
+  /* NUEVO: Botón flotante de WhatsApp para mobile */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; /* VISIBLE en mobile */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    animation: pulse 2s infinite;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+  }
+
+  .whatsapp-float::before {
+    content: "💬";
+    font-size: 24px;
+    color: white;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+  }
+
+  /* Header Mobile - Simplificado siguiendo mejores prácticas */
   .header-top {
-    padding: 8px 0;
-    font-size: 0.75rem;
+    display: none; /* OCULTO: Demasiados elementos para mobile */
   }
 
-  .contact-info {
-    gap: 8px;
-  }
-
-  .contact-info a {
-    font-size: 0.8rem;
-  }
-
-  .separator {
-    display: none;
-  }
+  /* En mobile solo mostraremos logo + menú hamburguesa */
 
   .navbar {
-    padding: 12px 0;
+    padding: 10px 0;
   }
 
   .menu-toggle {
     display: block;
-    padding: 5px;
+    padding: 8px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.05);
   }
 
   .nav-menu {
@@ -801,11 +1269,12 @@ section {
     flex-direction: column;
     gap: 0;
     padding: 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 16px 16px;
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
   }
 
   .nav-menu.active {
@@ -816,9 +1285,21 @@ section {
 
   .nav-menu li {
     width: 100%;
-    padding: 15px 20px;
+    padding: 16px 20px;
     border-bottom: 1px solid var(--border-light);
     text-align: center;
+  }
+
+  .nav-menu li:last-child {
+    border-bottom: none;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .nav-menu li a {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 0;
+    display: block;
   }
 
   .nav-menu li a::after {
@@ -826,8 +1307,13 @@ section {
   }
 
   .logo h1 {
-    font-size: 1.1rem;
-    letter-spacing: 2px;
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+  }
+
+  .logo-img {
+    height: 40px;
+    margin-right: 12px;
   }
 
   .nav-icons {
@@ -839,52 +1325,7 @@ section {
     padding: 5px;
   }
 
-  /* Hero Mobile */
-  .hero {
-    height: 70vh;
-    min-height: 450px;
-    padding: 20px 0;
-  }
-
-  .hero-content {
-    padding: 0 15px;
-  }
-
-  .hero-subtitle {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
-
-  .hero-title {
-    font-size: 1.6rem;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    line-height: 1.3;
-  }
-
-  .hero-description {
-    font-size: 0.9rem;
-    margin-bottom: 30px;
-    line-height: 1.6;
-  }
-
-  .btn {
-    padding: 12px 25px;
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-  }
-
-  .hero-buttons {
-    gap: 12px;
-    flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-
-  .hero-buttons .btn {
-    width: 100%;
-  }
+  /* Nota: Hero mobile styles están definidos en el media query específico más arriba */
 
   .hero-scroll {
     bottom: 20px;
@@ -894,162 +1335,199 @@ section {
     height: 30px;
   }
 
-  /* Products Mobile */
+  /* Products Mobile - Solo mostrar productos destacados */
   .products-section {
-    padding: 50px 0;
+    padding: 40px 0; /* Menos padding */
   }
 
   .section-header {
-    margin-bottom: 40px;
+    margin-bottom: 30px; /* Más compacto */
   }
 
   .section-title {
-    font-size: 1.8rem;
+    font-size: 1.6rem; /* Más pequeño */
     letter-spacing: 2px;
   }
 
   .section-subtitle {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    display: none; /* OCULTO: Simplifica en mobile */
   }
 
   .products-grid {
     grid-template-columns: 1fr;
-    gap: 25px;
-    margin-bottom: 40px;
+    gap: 20px;
+    margin-bottom: 30px; /* Más compacto */
+  }
+
+  /* MOBILE: Solo mostrar los primeros 3 productos */
+  .product-card:nth-child(n+4) {
+    display: none; /* OCULTO: Solo 3 productos en mobile */
   }
 
   .product-card {
-    max-width: 400px;
+    max-width: 350px;
     margin: 0 auto;
     width: 100%;
   }
 
   .product-info {
-    padding: 18px;
+    padding: 16px; /* Más compacto */
   }
 
   .product-name {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 6px;
   }
 
   .product-description {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
   }
 
   .product-price {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
   }
 
   .add-to-cart-btn {
-    padding: 10px 20px;
+    padding: 8px 16px;
     font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 16px;
   }
 
   .quick-view-btn {
-    padding: 10px 25px;
-    font-size: 0.85rem;
+    display: none; /* OCULTO: Simplifica interacción en mobile */
   }
 
-  /* Categories Mobile */
+  .product-overlay {
+    display: none; /* OCULTO: Sin overlay en mobile */
+  }
+
+  /* Cambiar texto del botón Ver Más */
+  .view-more .btn {
+    font-size: 0.9rem;
+    padding: 14px 28px;
+    font-weight: 600;
+  }
+
+  /* Categories Mobile - Simplificado */
   .categories-section {
-    padding: 50px 0;
+    padding: 40px 0; /* Más compacto */
   }
 
   .categories-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px; /* Más compacto */
+  }
+
+  /* MOBILE: Solo mostrar 2 categorías principales */
+  .category-card:nth-child(n+3) {
+    display: none; /* OCULTO: Solo 2 categorías en mobile */
   }
 
   .category-card {
-    height: 280px;
-    max-width: 400px;
+    height: 220px; /* Más pequeño */
+    max-width: 350px;
     margin: 0 auto;
     width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
   }
 
   .category-name {
-    font-size: 1.4rem;
-    letter-spacing: 2px;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
   }
 
   .category-btn {
-    padding: 10px 30px;
-    font-size: 0.85rem;
-    opacity: 1;
-    transform: translateY(0);
+    padding: 10px 24px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    opacity: 1; /* Siempre visible en mobile */
+    transform: translateY(0); /* Sin animaciones complejas */
+    border-radius: 20px;
   }
 
-  /* Footer Mobile */
+  /* Footer Mobile - Simplificado */
   .footer-cta {
-    padding: 50px 20px;
-  }
-
-  .cta-title {
-    font-size: 1.5rem;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-  }
-
-  .cta-description {
-    font-size: 0.95rem;
-    margin-bottom: 25px;
+    display: none; /* OCULTO: Evita redundancia en mobile */
   }
 
   .footer-main {
-    padding: 40px 0;
+    padding: 30px 0; /* Más compacto */
   }
 
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 35px;
+    gap: 25px;
+  }
+
+  /* MOBILE: Solo mostrar columnas esenciales */
+  .footer-column:nth-child(2),
+  .footer-column:nth-child(3) {
+    display: none; /* OCULTO: Solo info esencial y newsletter */
   }
 
   .footer-heading {
-    font-size: 0.95rem;
-    margin-bottom: 15px;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
   }
 
   .footer-links li {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   .footer-links a {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .newsletter-text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+  }
+
+  .newsletter-form {
+    margin-bottom: 15px;
   }
 
   .newsletter-input,
   .newsletter-btn {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     padding: 10px 12px;
   }
 
+  .social-links {
+    justify-content: center;
+  }
+
   .footer-bottom {
-    padding: 20px 0;
+    padding: 15px 0; /* Más compacto */
   }
 
   .footer-bottom-content {
     flex-direction: column;
     text-align: center;
-    gap: 15px;
+    gap: 12px;
   }
 
   .copyright {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .contact-buttons {
     width: 100%;
     justify-content: center;
-    flex-direction: column;
+    gap: 10px;
   }
 
   .contact-btn {
-    width: 100%;
-    max-width: 250px;
-    padding: 12px 20px;
+    flex: 1;
+    max-width: 140px;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
   }
 }
